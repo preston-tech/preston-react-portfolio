@@ -1,9 +1,9 @@
-
 import React, { Component } from "react";
 import moment from "moment";
+import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import NavigationContainer from "./navigation/navigation-container.js";
+import NavigationContainer from "./navigation/navigation-container";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
@@ -12,13 +12,30 @@ import PortfolioDetail from "./portfolio/portfolio-details";
 import NoMatch from "./pages/no-match";
 
 export default class App extends Component {
+  constructor() {
+    super();
+
+    this.getPortfolioItems = this.getPortfolioItems.bind(this);
+  }
+
+  getPortfolioItems() {
+    axios
+      .get("https://prestonphillips.devcamp.space/portfolio/portfolio_items")
+      .then(response => {
+        console.log("response data", response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   render() {
+    this.getPortfolioItems();
     return (
-      <div className='app'>
+      <div className="app">
         <Router>
           <div>
-            <h1>Preston Phillips Portfolio</h1>
-            <div>{moment().format('MMMM Do YYYY, h:mm:ss a')}</div>
+            <h1>Jordan Hudgens Portfolio</h1>
+            <div>{moment().format("MMMM Do YYYY, h:mm:ss a")}</div>
             <NavigationContainer />
 
             <Switch>
@@ -26,7 +43,6 @@ export default class App extends Component {
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/blog" component={Blog} />
-              <Route path="/portfolio/:slug" component={PortfolioDetail} />
               <Route
                 exact
                 path="/portfolio/:slug"
