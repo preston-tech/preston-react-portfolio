@@ -26,7 +26,7 @@ export default class PortfolioContainer extends Component {
 
   getPortfolioItems() {
     axios
-      .get("https://prestonphillips.space/portfolio/portfolio_items")
+      .get("https://prestonphillips.devcamp.space/portfolio/portfolio_items")
       .then(response => {
         this.setState({
           data: response.data.portfolio_items
@@ -47,9 +47,7 @@ export default class PortfolioContainer extends Component {
       return (
         <PortfolioItem
           key={item.id}
-          title={item.name}
-          url={item.url}
-          slug={item.id}
+          item={item}
         />
       );
     });
@@ -72,7 +70,9 @@ export default class PortfolioContainer extends Component {
         <button onClick={() => this.handleFilter("Scheduling")}>Scheduling</button>
         <button onClick={() => this.handleFilter("Enterprise")}>Enterprise</button>
 
-        {this.portfolioItems()}
+        <div className="portfolio-items-wrapper">
+          {this.portfolioItems()}
+        </div>
       </div>
     );
   }

@@ -2,3 +2,9 @@ body {
     margin: 0px;
     font-family: 'Roboto Slab', ;
 }
+
+.container { 
+    display: grid;
+    grid-template-columns: 1fr;
+    
+}
