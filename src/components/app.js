@@ -21,6 +21,7 @@ export default class App extends Component {
 
     this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
+    this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
   }
 
   handleSuccessfulLogin() {
@@ -30,6 +31,12 @@ export default class App extends Component {
   }
 
   handleUnsuccessfulLogin() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN"
+    });
+  }
+
+  handleSuccessfulLogOut() {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN"
     });
@@ -78,7 +85,8 @@ export default class App extends Component {
       <div className="container">
         <Router>
           <div>
-            <NavigationContainer loggedInStatus={this.state.loggedInStatus} />
+            <NavigationContainer loggedInStatus={this.state.loggedInStatus} 
+            handleSuccessfulLogOut={this.state.loggedInStatus}/>
 
             <h2>{this.state.loggedInStatus}</h2>
 
