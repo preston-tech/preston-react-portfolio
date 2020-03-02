@@ -1,10 +1,9 @@
-  
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 import { withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 
-const NavigationComponent = (props) => {
+const NavigationComponent = props => {
   const dynamicLink = (route, linkText) => {
     return (
       <div className="nav-link-wrapper">
@@ -12,8 +11,8 @@ const NavigationComponent = (props) => {
           {linkText}
         </NavLink>
       </div>
-    )
-  }
+    );
+  };
 
   const handleSignOut = () => {
     axios
@@ -38,6 +37,7 @@ const NavigationComponent = (props) => {
             Home
           </NavLink>
         </div>
+
         <div className="nav-link-wrapper">
           <NavLink to="/about-me" activeClassName="nav-link-active">
             About
@@ -51,21 +51,24 @@ const NavigationComponent = (props) => {
         </div>
 
         <div className="nav-link-wrapper">
-          <NavLink to="/contact" activeClassName="nav-link-active">
+          <NavLink to="/blog" activeClassName="nav-link-active">
             Blog
           </NavLink>
         </div>
 
-        {props.loggedInStatus === "LOGGED_IN" ? dynamicLink("/portfolio-manager", "Portfolio Manager") : null }
-        
+        {props.loggedInStatus === "LOGGED_IN" ? (
+          dynamicLink("/portfolio-manager", "Portfolio Manager")
+        ) : null}
       </div>
+
       <div className="right-side">
         Preston Phillips
-
-        {props.loggedInStatus === 'LOGGED_IN' ? <a onClick={handleSignOut}>Sign Out</a> : null }
+        {props.loggedInStatus === "LOGGED_IN" ? (
+          <a onClick={handleSignOut}>Sign Out</a>
+        ) : null}
       </div>
     </div>
   );
-}
+};
 
-export default withRouter(NavigationComponent)
+export default withRouter(NavigationComponent);
