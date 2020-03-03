@@ -20,7 +20,7 @@
 
 @mixin input-element {
   input {
-    font-family: "Roboto Slab", sans-serif;
+    font-family: "Titillium Web", sans-serif;
     color: $charcoal;
     padding: 5px 0px;
     width: 100%;
@@ -32,7 +32,7 @@
     transition: 0.5s all ease-in-out;
     font-size: 1.1em;
     margin-bottom: 21px;
-    
+
     &:focus {
       outline: none;
       border-bottom: 1px solid $dark-teal;
@@ -42,5 +42,5 @@
 
 @mixin base-grid() {
   display: grid;
-  grid: 21px;
+  grid-gap: 21px;
 }
