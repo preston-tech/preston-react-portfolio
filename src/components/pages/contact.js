@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function() {
   return (
   <div className="content-page-wrapper">
-    <div classname="left-column"
+    <div className="left-column"
     // style={{
     //   background: "url(" + profilePicture + ") no-repeat",
     //   backgroundSize: "cover",
