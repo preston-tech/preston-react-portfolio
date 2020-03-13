@@ -13,13 +13,11 @@ export default class PortfolioManager extends Component {
       portfolioToEdit: {}
     };
 
-    this.handleNewFormSubmission = this.handleNewFormSubmission.bind(
-      this
-    );
-    this.handleEditFormSubmission = this.handleEditFormSubmission.bind(this)
+    this.handleNewFormSubmission = this.handleNewFormSubmission.bind(this);
+    this.handleEditFormSubmission = this.handleEditFormSubmission.bind(this);
     this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this)
-    this.handleEditClick = this.handleEditClick.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
     this.clearPortfolioToEdit = this.clearPortfolioToEdit.bind(this);
   }
 
@@ -32,12 +30,13 @@ export default class PortfolioManager extends Component {
   handleEditClick(portfolioItem) {
     this.setState({
       portfolioToEdit: portfolioItem
-    })
+    });
   }
 
   handleDeleteClick(portfolioItem) {
     axios
-      .delete(`https://api.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`,
+      .delete(
+        `https://api.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`,
         { withCredentials: true }
       )
       .then(response => {
@@ -95,7 +94,6 @@ export default class PortfolioManager extends Component {
       <div className="portfolio-manager-wrapper">
         <div className="left-column">
           <PortfolioForm
-            handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}
             handleNewFormSubmission={this.handleNewFormSubmission}
             handleEditFormSubmission={this.handleEditFormSubmission}
             handleFormSubmissionError={this.handleFormSubmissionError}
@@ -105,10 +103,10 @@ export default class PortfolioManager extends Component {
         </div>
 
         <div className="right-column">
-          <PortfolioSidebarList 
-          data={this.state.portfolioItems} 
-          handleDeleteClick={this.handleDeleteClick}
-          handleEditClick={this.handleEditClick}
+          <PortfolioSidebarList
+            handleDeleteClick={this.handleDeleteClick}
+            data={this.state.portfolioItems}
+            handleEditClick={this.handleEditClick}
           />
         </div>
       </div>

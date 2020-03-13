@@ -21,20 +21,22 @@ export default class RichTextEditor extends Component {
     if (this.props.editMode && this.props.contentToEdit) {
       const blocksFromHtml = htmlToDraft(this.props.contentToEdit);
       const { contentBlocks, entityMap } = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+      const contentState = ContentState.createFromBlockArray(
+        contentBlocks,
+        entityMap
+      );
       const editorState = EditorState.createWithContent(contentState);
-      this.setState({ editorState })
+      this.setState({ editorState });
     }
   }
 
   onEditorStateChange(editorState) {
     this.setState(
       { editorState },
-      this.props.handleRichTextEditroChange(editorState),
+      this.props.handleRichTextEditorChange(
         draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
-    )
-    // .05ms
-    
+      )
+    );
   }
 
   getBase64(file, callback) {
@@ -46,8 +48,8 @@ export default class RichTextEditor extends Component {
 
   uploadFile(file) {
     return new Promise((resolve, reject) => {
-      this.getBase64(file, data => resolve({data: { link: data } }))
-    })
+      this.getBase64(file, data => resolve({ data: { link: data } }));
+    });
   }
 
   render() {
