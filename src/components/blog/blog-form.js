@@ -104,12 +104,11 @@ export default class BlogForm extends Component {
   }
 
   handleSubmit(event) {
-    axios
-      .post(
-        "https://prestonphillips.devcamp.space/portfolio/portfolio_blogs",
-        this.buildForm(),
-        { withCredentials: true }
-      )
+    axios(
+      this.state.apiUrl,
+      this.buildForm(),
+      { withCredentials: true }
+    )
       .then(response => {
         if (this.state.featured_image) {
           this.featuredImageRef.current.dropzone.removeAllFiles();
@@ -122,9 +121,13 @@ export default class BlogForm extends Component {
           featured_image: ""
         });
 
-        this.props.handleSuccessfullFormSubmission(
-          response.data.portfolio_blog
-        );
+        if (this.props.editMode) {
+          // Update blog detail
+          this.props.handleUpdateFormSubmission(response.data.portfolio_blog);
+        } else {
+          this.props.handleSuccessfullFormSubmission(
+          );
+        }
       })
       .catch(error => {
         console.log("handleSubmit for blog error", error);
